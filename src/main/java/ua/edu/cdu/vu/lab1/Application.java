@@ -14,12 +14,14 @@ public class Application {
         int step = readInt();
 
         ExecutorService executorService = Executors.newFixedThreadPool(threadsCount);
+        CountDownLatch starter = new CountDownLatch(1);
 
         List<Future<BigInteger>> futures = IntStream.rangeClosed(1, threadsCount)
-                .mapToObj(i -> new SummingCallable(step))
+                .mapToObj(i -> new SummingCallable(starter, step))
                 .map(executorService::submit)
                 .toList();
 
+        starter.countDown();
         TimeUnit.SECONDS.sleep(sleepSeconds);
 
         executorService.shutdownNow();
