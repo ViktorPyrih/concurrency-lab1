@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class Application {
 
+    private static final Scanner SCANNER = new Scanner(System.in);
+
     public static void main(String[] args) throws InterruptedException {
         int threadsCount = readInt();
         int sleepSeconds = readInt();
@@ -40,8 +42,7 @@ public class Application {
     }
 
     private static int readInt() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return SCANNER.nextInt();
     }
 
     private static void print(BigInteger[] results) {
