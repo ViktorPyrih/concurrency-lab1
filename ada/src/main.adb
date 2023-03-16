@@ -6,7 +6,7 @@ procedure Main is
    IsInterrupted : boolean := false;
    pragma Volatile(IsInterrupted);
    ThreadsCount : Integer := 16;
-   adaSucks : Integer := 0;
+   Magic : Integer := 0;
 
    -- break thread
    task type break_thread;
@@ -31,7 +31,7 @@ procedure Main is
       loop
          Sum := Sum + ThreadsCount;
          Elements := Elements + 1;
-         adaSucks := adaSucks + 1;
+         Magic := Magic + 1;
          exit when IsInterrupted;
       end loop;
       accept Finish (Sum : out Integer; Elements : out Integer) do
@@ -44,7 +44,7 @@ procedure Main is
    Sums : Array(1..ThreadsCount) of Integer;
    Elements : Array(1..ThreadsCount) of Integer;
 
-   breaker : break_thread;
+   Breaker : break_thread;
 
 -- body
 begin
