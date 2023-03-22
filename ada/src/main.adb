@@ -5,7 +5,8 @@ procedure Main is
 
    IsInterrupted : boolean := false;
    pragma Volatile(IsInterrupted);
-   ThreadsCount : Integer := 16;
+   ThreadsCount : Integer := 10;
+   Step: Integer := 10;
    Magic : Integer := 0;
 
    -- break thread
@@ -29,7 +30,7 @@ procedure Main is
       accept Start;
 
       loop
-         Sum := Sum + ThreadsCount;
+         Sum := Sum + Step;
          Elements := Elements + 1;
          Magic := Magic + 1;
          exit when IsInterrupted;
